@@ -1,0 +1,32 @@
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+
+                try {
+                    FileReader fileReader = new FileReader("example.txt");
+                    char nextChar;
+                    while ((nextChar = getNextValidChar(fileReader)) != '\0') {
+                        System.out.print(nextChar);
+                    }
+                    fileReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            public static char getNextValidChar(FileReader fileReader) throws IOException {
+                int nextInt;
+                while ((nextInt = fileReader.read()) != -1) {
+                    char nextChar = (char) nextInt;
+
+                    if (nextChar != '\r') {
+                        return nextChar;
+                    }
+                }
+                
+                return '\0';
+            }
+        }
+
