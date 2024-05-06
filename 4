@@ -3,11 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
-public class CharacterFrequencyCounterTest {
 
-    public static void main(String[] args) {
-        testCountMethod();
-    }
 
     public static void testCountMethod() {
         String testString = "Hello, World! How are you today?";
@@ -39,7 +35,7 @@ public class CharacterFrequencyCounterTest {
             e.printStackTrace();
         }
 
-        // Print frequencies
+     
         for (char c = 'A'; c <= 'Z'; c++) {
             System.out.println(c + ": " + frequencies[c - 'A']);
         }
@@ -52,6 +48,6 @@ public class CharacterFrequencyCounterTest {
         if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
             return Character.toUpperCase(c);
         }
-        return '\0'; // Not a valid character for counting frequencies
+        return '\0'; 
     }
 }
