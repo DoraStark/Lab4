@@ -1,0 +1,57 @@
+import java.io.StringReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+
+public class CharacterFrequencyCounterTest {
+
+    public static void main(String[] args) {
+        testCountMethod();
+    }
+
+    public static void testCountMethod() {
+        String testString = "Hello, World! How are you today?";
+
+        // Test with StringReader
+        StringReader stringReader = new StringReader(testString);
+        count(stringReader);
+
+        // Test with BufferedReader reading from a file
+        try (BufferedReader fileReader = new BufferedReader(new FileReader("input.txt"))) {
+            count(fileReader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void count(Reader reader) {
+        int[] frequencies = new int[52]; 
+
+        try (BufferedReader bufferedReader = new BufferedReader(reader)) {
+            int nextChar;
+            while ((nextChar = bufferedReader.read()) != -1) {
+                char normalizedChar = normalize((char) nextChar);
+                if (normalizedChar != '\0') {
+                    frequencies[normalizedChar - 'A']++;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Print frequencies
+        for (char c = 'A'; c <= 'Z'; c++) {
+            System.out.println(c + ": " + frequencies[c - 'A']);
+        }
+        for (char c = 'a'; c <= 'z'; c++) {
+            System.out.println(c + ": " + frequencies[c - 'a' + 26]);
+        }
+    }
+
+    public static char normalize(char c) {
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+            return Character.toUpperCase(c);
+        }
+        return '\0'; // Not a valid character for counting frequencies
+    }
+}
