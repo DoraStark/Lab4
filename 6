@@ -1,0 +1,12 @@
+public static void outputHistogram(int[] frequencies) {
+        for (int i = 0; i < frequencies.length; i++) {
+            char currentChar = (char) (i < 26 ? 'A' + i : 'a' + i - 26); // Convert index to character
+            int currentFrequency = frequencies[i];
+
+            System.out.print(currentChar + " : ");
+            for (int j = 0; j < currentFrequency; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
